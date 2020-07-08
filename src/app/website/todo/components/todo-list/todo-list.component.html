@@ -1,0 +1,14 @@
+<input type="text" [formControl]="fieldTitle" (keydown.enter)="addTodo()">
+<div *ngIf="fieldTitle.errors && fieldTitle.dirty">
+  <p  *ngIf="fieldTitle.hasError('minlength')"> Minimo debe ser de 3 letras</p>
+  <p  *ngIf="fieldTitle.hasError('hasTodo')">la tarea ya existe</p>
+</div>
+
+
+<app-todo
+  (delete)="onDeleteTodo($event, i)"
+  (update)="onUpdateTodo($event, i)"
+  [todo]="todo" *ngFor="let todo of todos; index as i">
+</app-todo>
+
+<button (click)="generateFile()">generar pdf</button>
